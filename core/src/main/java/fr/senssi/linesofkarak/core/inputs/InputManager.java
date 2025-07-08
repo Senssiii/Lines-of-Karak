@@ -22,11 +22,9 @@ public class InputManager extends InputAdapter {
     private float MIN_ZOOM = 0.2f;
     private float MAX_ZOOM = 5f;
 
-    private UnitSelector selector;
 
     public InputManager(OrthographicCamera camera) {
         this.camera = camera;
-        this.selector = new UnitSelector();
     }
 
     // On gère ici le zoom via la molette
@@ -45,12 +43,11 @@ public class InputManager extends InputAdapter {
         camera.unproject(click);
 
         if (button == Input.Buttons.LEFT) {
-            selector.onLeftClick(click.x, click.y);
             System.out.println("Click G: " + click);
         }
 
         if (button == Input.Buttons.RIGHT) {
-            selector.onRightClick(click.x, click.y);
+            System.out.println("Click D: " + click);
         }
 
         return true; // Traiter l'événement de la souris

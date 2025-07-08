@@ -2,7 +2,6 @@ package fr.senssi.linesofkarak.core.ui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
-import fr.senssi.linesofkarak.entities.units.soldier.Soldier;
 
 import java.util.ArrayList;
 import java.util.List;

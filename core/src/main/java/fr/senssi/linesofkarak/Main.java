@@ -1,24 +1,26 @@
 package fr.senssi.linesofkarak;
+
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import fr.senssi.linesofkarak.core.bus.collision.CollisionBus;
+import fr.senssi.linesofkarak.core.bus.Bus;
 import fr.senssi.linesofkarak.core.bus.sprite.ShownEntityBus;
 import fr.senssi.linesofkarak.core.inputs.InputManager;
 import fr.senssi.linesofkarak.core.sprite.ShownEntity;
 import fr.senssi.linesofkarak.core.ui.SoldierStatUI;
 import fr.senssi.linesofkarak.core.ui.UIManager;
+import fr.senssi.linesofkarak.entities.units.DeployedUnit;
+import fr.senssi.linesofkarak.entities.units.Unit;
 import fr.senssi.linesofkarak.map.MapLoader;
-import fr.senssi.linesofkarak.core.bus.Bus;
-import fr.senssi.linesofkarak.entities.units.soldier.SoldierSpawned;
-import fr.senssi.linesofkarak.entities.units.soldier.SoldierFactory;
 /**
  * {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms.
  */
@@ -41,9 +43,11 @@ public class Main extends ApplicationAdapter {
         loadMap();
 
         ShownEntity.bus = new ShownEntityBus();
-        SoldierSpawned.collisionBus = new CollisionBus();
-        SoldierFactory.spawnUnits();
 
+        Unit unit = new Unit("test", 1, 1, 1);
+        for (int i = 0; i < 50; i++) {
+            DeployedUnit deployedUnit = new DeployedUnit(unit, new Sprite(new Texture(Gdx.files.internal("orientation.png"))));
+        }
         uiManager = new UIManager();
         System.out.println("ui manager initialisé");
         uiManager.soldierStatUI = new SoldierStatUI();
