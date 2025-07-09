@@ -27,6 +27,7 @@ import fr.senssi.linesofkarak.map.MapLoader;
 public class Main extends ApplicationAdapter {
     private static final int VIRTUAL_WIDTH = 800;
     private static final int VIRTUAL_HEIGHT = 480;
+    public static final int GRID_SIZE = 16;
 
     private SpriteBatch batch;
     private Viewport viewport;
@@ -44,7 +45,7 @@ public class Main extends ApplicationAdapter {
 
         ShownEntity.bus = new ShownEntityBus();
 
-        Unit unit = new Unit("test", 1, 1, 1);
+        Unit unit = new Unit("test", 1, 1, 3);
         for (int i = 0; i < 50; i++) {
             DeployedUnit deployedUnit = new DeployedUnit(unit, new Sprite(new Texture(Gdx.files.internal("orientation.png"))));
         }
