@@ -47,7 +47,7 @@ public class Main extends ApplicationAdapter {
 
         Unit unit = new Unit("test", 1, 1, 3);
         for (int i = 0; i < 50; i++) {
-            DeployedUnit deployedUnit = new DeployedUnit(unit, new Sprite(new Texture(Gdx.files.internal("orientation.png"))));
+            DeployedUnit deployedUnit = new DeployedUnit(unit, new Sprite(new Texture(Gdx.files.internal("textures/unit/soldier.png"))));
         }
         uiManager = new UIManager();
         System.out.println("ui manager initialisé");

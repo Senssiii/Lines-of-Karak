@@ -1,5 +1,7 @@
 package fr.senssi.linesofkarak.entities.units;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
@@ -11,6 +13,7 @@ public class DeployedUnit extends ShownEntity {
     private Sprite sprite;
     private int targetX,targetY;
     public boolean movedThisTurn = false;
+    public boolean isSelected = true;
 
     public DeployedUnit(Unit unit, Sprite sprite) {
         this.unit = unit;
@@ -68,6 +71,9 @@ public class DeployedUnit extends ShownEntity {
     @Override
     public void draw(Batch batch) {
         batch.draw(sprite, sprite.getX(), sprite.getY());
+        if (isSelected){
+            batch.draw(new Texture(Gdx.files.internal("textures/effects/selected.png")),sprite.getX(),sprite.getY());
+        }
     }
 
     private void onNewTurn(){
@@ -83,7 +89,6 @@ public class DeployedUnit extends ShownEntity {
         targetY = MathUtils.random(getY()-5,getY()+20);
         System.out.println("Nouvel objectif : " + targetX+ ";" + targetY);
     }
-
 
     private long lastTurnTime = System.currentTimeMillis();
     private static final long TURN_DURATION = 2000; // 3 secondes en millisecondes

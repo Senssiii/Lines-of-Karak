@@ -12,7 +12,7 @@ import java.util.List;
 
 public class MapLoader {
     public static TiledMap loadMap(String name){
-        System.out.println("textures/map/"+name+".tmx");
+        System.out.println("Map : "+name+".tmx");
         return new TmxMapLoader().load("textures/map/"+name+".tmx");
     }
 }
