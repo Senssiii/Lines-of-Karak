@@ -100,10 +100,9 @@ public class DeployedUnit extends ShownEntity {
         // Vérification si la tile est traversable
         Boolean walkable = cell.getTile().getProperties().get("walkable", Boolean.class);
         if (walkable != null && !walkable) {
-            return Integer.MAX_VALUE; // Mur infranchissable
+            return Integer.MAX_VALUE;
         }
 
-        // Récupération du coût directement depuis la propriété moveCost
         return cell.getTile().getProperties().get("moveCost", Integer.MAX_VALUE, Integer.class);
     }
 
