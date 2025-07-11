@@ -18,4 +18,8 @@ public class Unit {
         this.armor = armor;
         this.speed = speed;
     }
+
+    public int getSpeed() {
+        return speed;
+    }
 }

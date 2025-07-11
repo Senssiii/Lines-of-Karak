@@ -21,7 +21,7 @@ import fr.senssi.linesofkarak.core.ui.SoldierStatUI;
 import fr.senssi.linesofkarak.core.ui.UIManager;
 import fr.senssi.linesofkarak.entities.units.DeployedUnit;
 import fr.senssi.linesofkarak.entities.units.Unit;
-import fr.senssi.linesofkarak.map.MapLoader;
+import fr.senssi.linesofkarak.map.MapManager;
 /**
  * {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms.
  */
@@ -35,7 +35,7 @@ public class Main extends ApplicationAdapter {
     private OrthographicCamera camera;
     private InputManager inputManager;
     public static UIManager uiManager;
-    private TiledMap map;
+    public static TiledMap map;
     private OrthogonalTiledMapRenderer mapRenderer;
 
     @Override
@@ -47,9 +47,11 @@ public class Main extends ApplicationAdapter {
         ShownEntity.bus = new ShownEntityBus();
 
         for (int i = 0; i < 20; i++) {
-            Unit unit = new Unit("test", 1, 1, MathUtils.random(1,5));
+            Unit unit = new Unit("test", 1, 1, 6);
             DeployedUnit deployedUnit = new DeployedUnit(unit, new Sprite(new Texture(Gdx.files.internal("textures/unit/soldier.png"))));
-            deployedUnit.moveGrid(MathUtils.random(0,20),MathUtils.random(0,20));
+            deployedUnit.moveGrid(i+4,5);
+            deployedUnit.targetX = i+4;
+            deployedUnit.targetY = 5;
         }
         uiManager = new UIManager();
         System.out.println("ui manager initialisé");
@@ -72,7 +74,7 @@ public class Main extends ApplicationAdapter {
     }
 
     private void loadMap() {
-        map = MapLoader.loadMap("base_map");
+        map = MapManager.loadMap("test_zone");
         mapRenderer = new OrthogonalTiledMapRenderer(map); // Ajout du renderer
     }
 

@@ -50,11 +50,11 @@ public class InputManager extends InputAdapter {
         int yGrid = (int) (click.y / Main.GRID_SIZE);
 
         if (button == Input.Buttons.LEFT) {
+            UnitManager.clearSelectedDeployedUnits();
+
             DeployedUnit selectedUnit = UnitManager.findDeployedUnit(xGrid,yGrid);
             if (selectedUnit != null){
                 selectedUnit.isSelected = !selectedUnit.isSelected;
-            } else {
-                UnitManager.clearSelectedDeployedUnits();
             }
 
             System.out.println("Click G: " + click);

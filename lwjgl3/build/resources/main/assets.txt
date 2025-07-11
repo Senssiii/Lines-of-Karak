@@ -12,9 +12,8 @@ textures/map/ground/karak_base.tsx
 textures/map/ground/mur.png
 textures/map/ground/roche.png
 textures/map/ground/tile.png
-textures/map/jawbreaker.tsx
-textures/map/jawbreaker_tiles.png
-textures/map/test_map.tmx
+textures/map/road.tmx
+textures/map/test_zone.tmx
 textures/unit/soldier.png
 textures/weapons/a-ak.png
 textures/weapons/gourdin.png
