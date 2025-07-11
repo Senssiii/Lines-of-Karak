@@ -11,11 +11,12 @@ import fr.senssi.linesofkarak.core.sprite.ShownEntity;
 public class DeployedUnit extends ShownEntity {
     private Unit unit;
     private Sprite sprite;
-    private int targetX,targetY;
+    public int targetX,targetY;
     public boolean movedThisTurn = false;
     public boolean isSelected = true;
 
     public DeployedUnit(Unit unit, Sprite sprite) {
+        UnitManager.deployedUnits.add(this);
         this.unit = unit;
         this.sprite = sprite;
     }
@@ -29,9 +30,8 @@ public class DeployedUnit extends ShownEntity {
         return (int) (sprite.getY() / Main.GRID_SIZE);
     }
 
-
     private void tryMove() {
-        if (movedThisTurn) return;
+        if (movedThisTurn || isAtObjective()) return;
         turnMove();
     }
     private void turnMove(){
@@ -60,7 +60,7 @@ public class DeployedUnit extends ShownEntity {
         moveGrid(dx, dy);
         movedThisTurn = true;    }
 
-    private void moveGrid(int dx, int dy){
+    public void moveGrid(int dx, int dy){
         int newGridX = getX() + dx;
         int newGridY = getY() + dy;
 
@@ -68,6 +68,7 @@ public class DeployedUnit extends ShownEntity {
         sprite.setY(newGridY * Main.GRID_SIZE);
         System.out.println("Position : " + getX()+ ";" + getY() );
     }
+
     @Override
     public void draw(Batch batch) {
         batch.draw(sprite, sprite.getX(), sprite.getY());
@@ -76,7 +77,7 @@ public class DeployedUnit extends ShownEntity {
         }
     }
 
-    private void onNewTurn(){
+    public void onNewTurn(){
         movedThisTurn = false;
     }
 
@@ -90,19 +91,8 @@ public class DeployedUnit extends ShownEntity {
         System.out.println("Nouvel objectif : " + targetX+ ";" + targetY);
     }
 
-    private long lastTurnTime = System.currentTimeMillis();
-    private static final long TURN_DURATION = 2000; // 3 secondes en millisecondes
-
     @Override
     public void update() {
-        long currentTime = System.currentTimeMillis();
-
-        if (isAtObjective()) newRandomObjective();
-
-        if (currentTime - lastTurnTime >= TURN_DURATION) {
-            onNewTurn();
-            lastTurnTime = currentTime;
-        }
         tryMove();
     }
 

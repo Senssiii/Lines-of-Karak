@@ -4,6 +4,13 @@ orientation.png
 orientationBIG.png
 textures/effects/route.png
 textures/effects/selected.png
+textures/map/base_map.tmx
+textures/map/ground/Herbe.png
+textures/map/ground/arbres.png
+textures/map/ground/herbe_2.png
+textures/map/ground/karak_base.tsx
+textures/map/ground/mur.png
+textures/map/ground/roche.png
 textures/map/ground/tile.png
 textures/map/jawbreaker.tsx
 textures/map/jawbreaker_tiles.png

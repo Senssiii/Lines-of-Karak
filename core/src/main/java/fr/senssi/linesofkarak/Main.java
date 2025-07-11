@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import fr.senssi.linesofkarak.core.bus.Bus;
@@ -45,9 +46,10 @@ public class Main extends ApplicationAdapter {
 
         ShownEntity.bus = new ShownEntityBus();
 
-        Unit unit = new Unit("test", 1, 1, 3);
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 20; i++) {
+            Unit unit = new Unit("test", 1, 1, MathUtils.random(1,5));
             DeployedUnit deployedUnit = new DeployedUnit(unit, new Sprite(new Texture(Gdx.files.internal("textures/unit/soldier.png"))));
+            deployedUnit.moveGrid(MathUtils.random(0,20),MathUtils.random(0,20));
         }
         uiManager = new UIManager();
         System.out.println("ui manager initialisé");
@@ -70,7 +72,7 @@ public class Main extends ApplicationAdapter {
     }
 
     private void loadMap() {
-        map = MapLoader.loadMap("test_map");
+        map = MapLoader.loadMap("base_map");
         mapRenderer = new OrthogonalTiledMapRenderer(map); // Ajout du renderer
     }
 
